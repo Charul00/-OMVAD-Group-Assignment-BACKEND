@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: linksaver-api
+    env: node
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        sync: false # This will be set in the Render dashboard
+      - key: FRONTEND_URL
+        sync: false # Will need to be updated with your Vercel frontend URL
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1
